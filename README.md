@@ -30,13 +30,13 @@ It enables developers to turn a simple .json file of Q&A pairs into a responsive
 
 ```mermaid
 flowchart TD
-    A[JSON Input] --> B[Data Preprocessing<br>(clean, normalize)]
+    A[JSON Input] --> B[Data Preprocessing<br>--clean, normalize--]
     B --> C[Text Embedding<br>sentence-transformers]
     C --> D[Vector Store<br>FAISS]
     E[User Query] --> F[Embed Query]
-    F --> G[Similarity Search<br>FAISS Retriever]
+    F --> G[Similarity Search<br>--FAISS Retriever--]
     G --> H[Top-k Chunks]
-    H --> I[Prompt Builder<br>(RAG format)]
+    H --> I[Prompt Builder<br>RAG format]
     I --> J[LLM Inference<br>via Ollama]
     J --> K[Final Answer]
 
@@ -54,8 +54,20 @@ flowchart TD
 | **Vector Store**       | FAISS (CPU)                       | Lightweight, fast, local, minimal setup                                | No persistence between runs without manual save/load               |
 | **Retriever**          | FAISS top-k search                | Simple cosine similarity                                               | No semantic reranking (e.g. re-rank with cross-encoder)            |
 | **Prompt Builder**     | Basic concatenation (RAG format)  | Transparent and controllable                                           | No advanced formatting or context window optimization              |
-| **LLM Inference**      | Ollama + Mistral (or LLaMA2)      | Fully offline, fast on M1, no API keys                                 | Limited context length & accuracy vs. GPT-4                        |
+| **LLM Inference**      | Ollama + Mistral      | Fully offline, fast on M1, no API keys                                 | Limited context length & accuracy vs. GPT-4                        |
 | **Overall System**     | Local-first architecture          | Private, fast, reproducible                                            | Not suitable for high-scale or real-time production use            |
+
+## Guide
+
+### Docker Usage
+1. Build the image:
+    ```bash
+    docker build -t heritage_forge_search:latest .
+    ```
+2. Run a command (e.g. search):
+    ```bash
+    docker run --rm heritage_forge_search:latest search --query "3D parts?"
+    ```
 
 ## Contributing
 Contributions, issues, and feature requests are welcome!
