@@ -28,7 +28,7 @@ jobs:
         run: pytest
 
       - name: Build Docker image
-        run: docker build -t heritage_forge_search:latest .
+        run: docker build -t heritage_forge_faq_agent:latest .
 
       - name: Test Docker container (--help)
-        run: docker run --rm heritage_forge_search:latest --help
+        run: docker run --rm heritage_forge_faq_agent:latest --help
