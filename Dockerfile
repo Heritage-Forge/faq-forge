@@ -45,4 +45,4 @@ ENV PATH="/home/myuser/app/venv/bin:$PATH"
 ENV PYTHONUNBUFFERED=1
 
 # Set the default command to show CLI help (adjust as needed)
-CMD ["python3.9", "src/main.py", "--help"]
+CMD ["python3.9", "main.py", "--help"]
